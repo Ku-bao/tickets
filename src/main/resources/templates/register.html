@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .center-form {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+        .form-container {
+            width: 50%;
+        }
+        .toast-container {
+            position: relative;
+            margin-top: 20px;
+            z-index: 1050;
+        }
+    </style>
+</head>
+<body>
+    <div class="container center-form">
+        <div class="card p-4 form-container">
+            <h2 class="card-title text-center">Register</h2>
+            <form action="/register" method="post">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" class="form-control" id="username" name="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" id="password" name="password" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone_number">Phone Number</label>
+                    <input type="text" class="form-control" id="phoneNumber" name="phoneNumber" required pattern="[0-9]{11}" title="Please enter a valid 11-digit phone number">
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Register</button>
+            </form>
+        </div>
+        <div id="toast-container" class="toast-container" aria-live="polite" aria-atomic="true"></div>
+    </div>
+
+    <!-- Bootstrap and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="/js/toast.js"></script>
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        var error = /*[[${error}]]*/ false;
+        console.log("Error value from register server: " + error); // 调试输出
+        if (error) {
+            showErrorToast('Email already exists.');
+        }
+        /*]]>*/
+    </script>
+</body>
+</html>

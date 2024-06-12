@@ -15,6 +15,7 @@ public class TicketService {
 
     public List<Ticket> findTickets(String origin, String destination) {
         return ticketRepository.findByTrain_OriginStation_LocationAndTrain_DestinationStation_Location(origin, destination);
+
     }
 
     public List<Ticket> findAllTickets() {

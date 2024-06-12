@@ -11,4 +11,5 @@ public interface TicketRepository extends JpaRepository<Ticket, Long> {
 
     List<Ticket> findByTrain_OriginStation_LocationAndTrain_DestinationStation_Location(String origin,
             String destination);
+
 }
